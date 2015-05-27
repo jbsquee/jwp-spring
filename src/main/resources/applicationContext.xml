@@ -27,4 +27,6 @@
 	
 	 <bean id="DBInitializer" class="next.dao.DBInitializer"
         init-method="init"/>
+        
+   	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

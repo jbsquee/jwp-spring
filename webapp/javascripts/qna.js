@@ -50,7 +50,10 @@
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				var result = JSON.parse(request.responseText);
-				alert(result.errorMessage);
+				
+				if(result.errorMessage!=""){
+					alert(result.errorMessage);
+				}
 				location.reload(true);
 			}
 		}
