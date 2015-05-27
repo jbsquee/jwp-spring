@@ -9,10 +9,12 @@ import next.dao.qna.QuestionDao;
 import next.model.qna.Answer;
 import next.model.qna.Question;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Scope("prototype")
 public class QnaService {
 	@Resource(name = "questionDao")
 	private QuestionDao questionDao;
