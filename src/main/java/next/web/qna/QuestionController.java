@@ -71,4 +71,10 @@ public class QuestionController {
 		model.addAttribute("question", qnaService.findById(id));
 		return "qna/form";
 	}
+	
+	@RequestMapping("/{id}/delete")
+	public String delete(@PathVariable long id) throws ExistedAnotherUserException {
+		qnaService.delete(id);
+		return "redirect:/";
+	}
 }

@@ -100,15 +100,28 @@ public class Question {
 		return new Question(questionId, writer, title, contents, createdDate, countOfComment, answers);
 	}
 	
+	public boolean isSameWriter(){
+		for(Answer answer :answers){
+			if(writer != answer.getWriter()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public boolean canDelete() {
-		if (answers == null || answers.isEmpty()) {
+		
+		if (answers == null || answers.isEmpty() || isSameWriter()) {
+			System.out.println("return true");
 			return true;
 		}
-		
-		List<Answer> anotherAnswers = answers.stream()
-				.filter(a -> a.isSameUser(writer))
-				.collect(Collectors.toList());
-		return anotherAnswers.isEmpty();
+		return false;
+// 		뭔지 몰라서 일단 동작하게만 만들어 놓음
+//		List<Answer> anotherAnswers = answers.stream()
+//				.filter(a -> a.isSameUser(writer))
+//				.collect(Collectors.toList());
+//		System.out.println("!!!"+anotherAnswers.isEmpty());
+//		return anotherAnswers.isEmpty();
 	}
 
 	@Override
