@@ -1,11 +1,13 @@
 package next.web.qna;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import next.model.qna.Question;
+import next.service.qna.ExistedAnotherUserException;
 import next.service.qna.QnaService;
 
 import org.slf4j.Logger;
@@ -45,7 +47,7 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public String save(@Valid Question question, BindingResult bindingResult) {
+	public String save(@Valid Question question, BindingResult bindingResult) throws ExistedAnotherUserException {
 		logger.debug("Question : {}", question);
 		if (bindingResult.hasFieldErrors()) {
 			List<FieldError> errors = bindingResult.getFieldErrors();
@@ -54,7 +56,19 @@ public class QuestionController {
 			}
 			return "qna/form";
 		}
+		
+		if(question.getQuestionId()!=0){			
+			qnaService.delete(question.getQuestionId());
+		}
+		
 		qnaService.save(question);
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/{id}/form")
+	public String updateForm(Model model, @PathVariable long id) {
+
+		model.addAttribute("question", qnaService.findById(id));
+		return "qna/form";
 	}
 }

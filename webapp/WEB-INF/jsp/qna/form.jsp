@@ -11,6 +11,7 @@
 	<div id="main">
 		<form:form modelAttribute="question" action="/questions" method="post">
 			<table>
+				<form:input type="hidden" path="questionId" />
 				<tr>
 					<td width="150">글쓴이</td>
 					<td>

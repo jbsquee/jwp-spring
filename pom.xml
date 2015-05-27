@@ -73,8 +73,14 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.1.Final</version>
-		</dependency>		
-
+		</dependency>	
+		
+		<dependency>
+			<groupId>c3p0</groupId>
+ 			<artifactId>c3p0</artifactId>
+		    <version>0.9.1.2</version>
+		</dependency>
+			
 		<!-- logger -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>

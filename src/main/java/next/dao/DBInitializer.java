@@ -11,7 +11,7 @@ import core.jdbc.AbstractJdbcDaoSupport;
 public class DBInitializer extends AbstractJdbcDaoSupport {
 	private static final Logger logger = LoggerFactory.getLogger(DBInitializer.class);
 	
-	public DBInitializer () {
+	public void init () {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 		populator.addScript(new ClassPathResource("jwp.sql"));
 		DatabasePopulatorUtils.execute(populator, getDataSource());
