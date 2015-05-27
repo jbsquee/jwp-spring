@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import next.dao.user.UserDao;
 import next.model.audit.AuditObject;
 import next.model.user.User;
+import next.model.user.UserAction;
 import next.service.audit.AuditService;
 
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class UserService {
 		if (existedUser != null) {
 			throw new ExistedUserException(user.getUserId());
 		}
-
+	
 		userDao.insert(user);
 		auditService.log(new AuditObject(user.getUserId(), CREATE));
 		return user;
